@@ -10,29 +10,44 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #ffffff;
             color: #333;
         }
 
         header {
-            background-color: #007acc;
-            color: white;
-            padding: 20px;
+            /* background-color: #b1b1b1; */
+            /* color: rgb(0, 0, 0); */
+            max-width: 800px;
+            margin: 20px auto;
             text-align: center;
         }
 
         section {
             max-width: 800px;
+            font-size: 1.1em;
             margin: 20px auto;
             padding: 20px;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
         }
 
-        h1, h2 {
+        h1 {
+            font-size: 3em;
+        } 
+
+        h3 {
+            font-size: 2em;
+        }   
+
+        h2 {
             color: #007acc;
         }
 
+        .author-block {
+            font-size: 1.2em; /* You can adjust the font size here */
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
         footer {
             text-align: center;
             margin-top: 40px;
@@ -44,32 +59,70 @@
         a {
             color: #007acc;
         }
+
+        video {
+            display: block;
+            width: 100%; /* This makes the video responsive */
+            max-width: 970px;
+            height: auto;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>RoCoDA</h1>
-        <p>Counterfactual Data Augmentation for Data-Efficient Robot Learning from Demonstrations</p>
+        <h1>RoCoDA:
+        Counterfactual Data Augmentation for Data-Efficient Robot Learning from Demonstrations</h1>
+        <p class="author-block"> 
+            Ezra Ameperosa<sup>*</sup><sup>1</sup>, 
+            Jeremy Collins<sup>*</sup><sup>1</sup>, 
+            Mrinal Jain<sup>1</sup>,
+            Animesh Garg<sup>1,2</sup>
+        </p> <!-- Add the author's name and affiliation here -->
+        <p class="affiliations">
+            <sup>*</sup> Equal Contribution
+            <sup>1</sup> Georgia Institute of Technology
+            <sup>2</sup> NVIDIA
+        </p>
     </header>
-
+        <!-- Add your video here -->
+    <div>   
+    <video controls>
+        <source src="src/ICRA_RoCoDA_final.mp4" type="video/mp4">
+    </video>
+    </div>
     <section>
-        <h2>About RoCoDA</h2>
-        <p>RoCoDA is a novel framework that leverages counterfactual data augmentation to improve the efficiency of robot learning from demonstrations. By exploiting the causal structure of robot-environment interactions, RoCoDA enhances policy generalization and reduces the need for extensive training data.</p>
-        
-        <h2>Key Features</h2>
-        <ul>
-            <li>Counterfactual data augmentation techniques for robot learning</li>
-            <li>Focus on causal relationships between states and actions</li>
-            <li>Improves generalization to unseen tasks and environments</li>
-            <li>Data-efficient learning from demonstrations</li>
-        </ul>
-
-        <h2>Get Involved</h2>
-        <p>RoCoDA is an open-source project hosted on <a href="https://github.com/rocoda/rocoda">GitHub</a>. Feel free to explore the code and contribute!</p>
+        <h2>Abstract</h2>
+        <p>Imitation learning in robotics faces significant challenges in generalization due 
+            to the complexity of robotic environments and the high cost of data collection. 
+            We introduce RoCoDA, a novel method that unifies the concepts of invariance, 
+            equivariance, and causality within a single framework to enhance data augmentation 
+            for imitation learning. RoCoDA leverages causal invariance by modifying task-irrelevant
+             subsets of the environment state without affecting the policy's output. 
+             Simultaneously, we exploit <i>SE(3)</i> equivariance by applying rigid body 
+             transformations to object poses and adjusting corresponding actions to generate 
+             synthetic demonstrations. We validate RoCoDA through extensive experiments on 
+             five robotic manipulation tasks, demonstrating improvements in policy performance,
+              generalization, and sample efficiency compared to state-of-the-art data 
+              augmentation methods. Our policies exhibit robust generalization to unseen 
+              object poses, textures, and the presence of distractors. Furthermore, we observe 
+              emergent behavior such as re-grasping, indicating policies trained with RoCoDA 
+              possess a deeper understanding of task dynamics. By leveraging invariance, 
+              equivariance, and causality, RoCoDA provides a principled approach to data 
+              augmentation in imitation learning, bridging the gap between geometric 
+              symmetries and causal reasoning.</p>
     </section>
 
-    <footer>
-        <p>RoCoDA Project - <a href="https://github.com/rocoda/rocoda">GitHub Repository</a></p>
-    </footer>
+    <section>
+        <h2>Method</h2>
+        <img src="src/Method.png" alt="RoCoDA Method" style="width:100%;max-width:800px;">
+        <p>RoCoDA consists of three stages: <i>SE(3)</i> equivariant state-action augmentation, causal augmentation, and visual augmentation. We
+            first apply rigid body transformations to object poses and identically transform the corresponding actions. Then, we resample subsets of the
+            environment state that are causally invariant to the action. Lastly, we apply several standard augmentations, including random resize/crop,
+            color jitter, and state noise, all of which leverage invariance aspects of the observation with respect to actions</p>
+    </section>
+
+       
 </body>
 </html>
