@@ -15,8 +15,6 @@
         }
 
         header {
-            /* background-color: #b1b1b1; */
-            /* color: rgb(0, 0, 0); */
             max-width: 800px;
             margin: 20px auto;
             text-align: center;
@@ -28,107 +26,170 @@
             margin: 20px auto;
             padding: 20px;
             background-color: white;
-            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
         }
 
         h1 {
             font-size: 3em;
         } 
 
-        h3 {
-            font-size: 2em;
-        }   
-
         h2 {
             color: #007acc;
         }
 
+
         .author-block {
-            font-size: 1.2em; /* You can adjust the font size here */
+            font-size: 1.2em;
             margin-top: 0;
             margin-bottom: 15px;
         }
-        footer {
-            text-align: center;
-            margin-top: 40px;
+
+
+        .video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
             padding: 10px;
-            font-size: 0.9em;
-            color: #666;
         }
 
-        a {
-            color: #007acc;
+        .arrow.left {
+            left: 0;
+        }
+
+        .arrow.right {
+            right: 0;
+        }
+
+        .tab-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .circle {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        
+        .circle-container {
+            display: flex;               /* Use flexbox */
+            justify-content: center;      /* Center the circles horizontally */
+            align-items: center;          /* Align items vertically in the middle */
+            margin-top: 20px;
+        }
+
+        .circle.active {
+            background-color: #007bff;
         }
 
         video {
             display: block;
-            width: 100%; /* This makes the video responsive */
-            max-width: 970px;
+            width: 100%;
+            max-width: 800px;
             height: auto;
-            margin: 20px auto;
-            border: 1px solid #ccc;
         }
+
     </style>
 </head>
 <body>
-    <header>
-        <h1>RoCoDA:
-        Counterfactual Data Augmentation for Data-Efficient Robot Learning from Demonstrations</h1>
-        <p class="author-block"> 
-            Ezra Ameperosa<sup>*</sup><sup>1</sup>, 
-            Jeremy Collins<sup>*</sup><sup>1</sup>, 
-            Mrinal Jain<sup>1</sup>,
-            Animesh Garg<sup>1,2</sup>
-        </p> <!-- Add the author's name and affiliation here -->
-        <p class="affiliations">
-            <sup>*</sup> Equal Contribution
-            <sup>1</sup> Georgia Institute of Technology
-            <sup>2</sup> NVIDIA
-        </p>
-    </header>
-        <!-- Add your video here -->
-    <div>   
-    <video controls>
-        <source src="src/ICRA_RoCoDA_final.mp4" type="video/mp4">
-    </video>
-    </div>
-    <section>
+    <header id="header"></header>
+    
+    <section>     
+        <div id="abstract_video"></div>
+    </section>
+
+    <section>   
         <h2>Abstract</h2>
-        <p>Imitation learning in robotics faces significant challenges in generalization due 
-            to the complexity of robotic environments and the high cost of data collection. 
-            We introduce RoCoDA, a novel method that unifies the concepts of invariance, 
-            equivariance, and causality within a single framework to enhance data augmentation 
-            for imitation learning. RoCoDA leverages causal invariance by modifying task-irrelevant
-             subsets of the environment state without affecting the policy's output. 
-             Simultaneously, we exploit <i>SE(3)</i> equivariance by applying rigid body 
-             transformations to object poses and adjusting corresponding actions to generate 
-             synthetic demonstrations. We validate RoCoDA through extensive experiments on 
-             five robotic manipulation tasks, demonstrating improvements in policy performance,
-              generalization, and sample efficiency compared to state-of-the-art data 
-              augmentation methods. Our policies exhibit robust generalization to unseen 
-              object poses, textures, and the presence of distractors. Furthermore, we observe 
-              emergent behavior such as re-grasping, indicating policies trained with RoCoDA 
-              possess a deeper understanding of task dynamics. By leveraging invariance, 
-              equivariance, and causality, RoCoDA provides a principled approach to data 
-              augmentation in imitation learning, bridging the gap between geometric 
-              symmetries and causal reasoning.</p>
+        <div id="abstract"></div>
     </section>
 
     <section>
         <h2>Method</h2>
-        <img src="src/Method.png" alt="RoCoDA Method" style="width:100%;max-width:800px;">
-        <p>RoCoDA consists of three stages: <i>SE(3)</i> equivariant state-action augmentation, causal augmentation, and visual augmentation. We
-            first apply rigid body transformations to object poses and identically transform the corresponding actions. Then, we resample subsets of the
-            environment state that are causally invariant to the action. Lastly, we apply several standard augmentations, including random resize/crop,
-            color jitter, and state noise, all of which leverage invariance aspects of the observation with respect to actions</p>
+        <div id="method"></div>
+    </section>
+
+    <section>     
+        <h2>Policy Rollouts</h2>  
+
+    <div class="video-container">
+        <video id="video-frame" src=""></video>
+    
+        <button class="arrow left" onclick="changeVideo(-1)">&#10094;</button>
+        <button class="arrow right" onclick="changeVideo(1)">&#10095;</button>
+    </div>
+    
+    <div class="circle-container" id="circle-container">
+        <div class="circle active" onclick="selectVideo(0)"></div>
+        <div class="circle" onclick="selectVideo(1)"></div>
+        <div class="circle" onclick="selectVideo(2)"></div>
+        <div class="circle" onclick="selectVideo(3)"></div>
+        <div class="circle" onclick="selectVideo(4)"></div>
+        <div class="circle" onclick="selectVideo(5)"></div>
+        <div class="circle" onclick="selectVideo(6)"></div>
+        <div class="circle" onclick="selectVideo(7)"></div>
+        <div class="circle" onclick="selectVideo(8)"></div>
+        <div class="circle" onclick="selectVideo(9)"></div>
+    </div>
+    
+    <!-- Buttons to load different video sets -->
+    <div class="set-buttons" style="text-align: center; margin-top: 20px;">
+        <button onclick="initVideoSet('set1')">Three Block Stack</button>
+        <button onclick="initVideoSet('set2')">Coffee</button>
+        <button onclick="initVideoSet('set2')">Three Piece Assembly</button>
+
+    </div>
     </section>
 
     <section>
-        <h2>Results</h2>
-        <p>Coming Soon!</p>
-
+        <h2>Emergent Behaviors and Broader Implications</h2>
+        <div id="emergent_behaviors"></div>
     </section>
 
-       
+
+    <script src="video.js"></script>
+
+    <script>
+        // Function to load content from external files into the main HTML file
+        function loadHTML(file, elementId, callback) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById(elementId).innerHTML = this.responseText;
+                    if (callback) {
+                        callback();
+                    }
+                }
+            };
+            xhttp.open("GET", file, true);
+            xhttp.send();
+        }
+
+        // Load each section and attach the scrolling functionality for "results_threestack"
+        loadHTML("header.html", "header");
+        loadHTML("abstract_video.html", "abstract_video");
+        loadHTML("abstract.html", "abstract");
+        loadHTML("method.html", "method");
+        loadHTML("emergent_behavior.html", "emergent_behaviors");
+        // loadHTML("results_threestack1.html", "results_threestack");
+            document.addEventListener("DOMContentLoaded", function() {
+            initVideoSet('set1');  // Default set
+        });
+        // loadHTML("results_coffee.html", "results_coffee");
+
+    </script>
+
 </body>
 </html>

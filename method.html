@@ -1,0 +1,61 @@
+<img src="src/Method.png" alt="RoCoDA Method" style="width:100%;max-width:800px;">
+<p>RoCoDA consists of three stages: <i>SE(3)</i> equivariant state-action
+    augmentation, causal augmentation, and visual augmentation. We
+    first apply rigid body transformations to object poses and 
+    identically transform the corresponding actions. Then, we 
+    resample subsets of the environment state that are causally
+    invariant to the action. Lastly, we apply several standard
+    augmentations, including random resize/crop,
+    color jitter, and state noise, all of which leverage invariance
+    aspects of the observation with respect to actions
+</p>
+
+<div>
+    <video controls>
+        <source src="src/se3.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div>
+    <p>
+        We use the <i>SE(3)</i> equivariance of robotic actions to object
+        poses, such that when we apply a transformation to an
+        object’s pose, we can adjust the actions accordingly, 
+        preserving the task's structure.
+    </p>
+</div>
+    
+
+
+<div>
+    <video controls>
+        <source src="src/CausalStackd0_fixed.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div>
+    <p>
+        Causally dependent entities are grouped into the same partition 
+        of the state space. For each partition, states are sampled from
+        different trajectories within the same causal phase, ensuring
+        consistency between causally dependent entities.
+    </p>
+</div>
+
+
+<div>
+    <video controls>
+        <source src="src/transport_augmentation.mp4" type="video/mp4">
+    </video>
+</div>
+<div>
+    <p>
+        Independently sampling from these groups creates new states that maintain
+        the causal structure, leading to valid trajectories for the
+        policy to learn from. A simulator is used to sample object
+        states from these partitions, which are then rendered and
+        input into an image-conditioned behavior cloning algorithm.
+        Building on previous work, we use traditional data augmentation
+        techniques on the observations to improve robustness.
+    </p>
+</div>
