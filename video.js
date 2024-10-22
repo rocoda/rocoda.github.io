@@ -22,6 +22,18 @@
             "src/Coffee/video_7.mp4",
             "src/Coffee/video_8.mp4",
             "src/Coffee/video_9.mp4",
+        ],
+        set3:[
+            "src/Assembly/video_0.mp4",
+            "src/Assembly/video_1.mp4",
+            "src/Assembly/video_2.mp4",
+            "src/Assembly/video_3.mp4",
+            "src/Assembly/video_4.mp4",
+            "src/Assembly/video_5.mp4",
+            "src/Assembly/video_6.mp4",
+            "src/Assembly/video_7.mp4",
+            "src/Assembly/video_8.mp4",
+            "src/Assembly/video_9.mp4",
         ]
     };
 
