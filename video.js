@@ -73,7 +73,7 @@
     
     // Function to update the active circle indicator
     function updateCircles() {
-        const circles = document.querySelectorAll(".circle");
+        const circles = document.querySelectorAll("#circle-container .circle");
         circles.forEach((circle, index) => {
             circle.classList.remove("active");
             if (index === currentVideoIndex) {
