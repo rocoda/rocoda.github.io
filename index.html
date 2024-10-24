@@ -156,12 +156,45 @@
     </section>
 
     <section>
+        <div class="video-container">
+            <video id="video-frame-2" controls>
+                <source id="video-source-2" src="">
+            </video>
+        
+            <button class="arrow left" onclick="changeVideo2(-1)">&#10094;</button>
+            <button class="arrow right" onclick="changeVideo2(1)">&#10095;</button>
+        </div>
+        
+        <div class="circle-container" id="circle-container-2">
+            <div class="circle active" onclick="selectVideo2(0)"></div>
+            <div class="circle" onclick="selectVideo2(1)"></div>
+            <div class="circle" onclick="selectVideo2(2)"></div>
+            <div class="circle" onclick="selectVideo2(3)"></div>
+            <div class="circle" onclick="selectVideo2(4)"></div>
+            <div class="circle" onclick="selectVideo2(5)"></div>
+            <div class="circle" onclick="selectVideo2(6)"></div>
+            <div class="circle" onclick="selectVideo2(7)"></div>
+            <div class="circle" onclick="selectVideo2(8)"></div>
+            <div class="circle" onclick="selectVideo2(9)"></div>
+        </div>
+        
+        <!-- Buttons to load different video sets -->
+        <div class="set-buttons" style="text-align: center; margin-top: 20px;">
+            <button onclick="initVideoSet2('set4')">Transport (Causal Augment)</button>
+
+    
+        </div>
+    </section>
+
+
+    <section>
         <h2>Emergent Behaviors and Broader Implications</h2>
         <div id="emergent_behaviors"></div>
     </section>
 
 
     <script src="video.js"></script>
+    <script src="video2.js"></script>
 
     <script>
         // Function to load content from external files into the main HTML file
@@ -186,9 +219,7 @@
         loadHTML("method.html", "method");
         loadHTML("emergent_behavior.html", "emergent_behaviors");
         // loadHTML("results_threestack1.html", "results_threestack");
-            document.addEventListener("DOMContentLoaded", function() {
-            initVideoSet('set1');  // Default set
-        });
+
         // loadHTML("results_coffee.html", "results_coffee");
 
     </script>

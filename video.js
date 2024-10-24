@@ -81,3 +81,6 @@
             }
         });
     }
+    document.addEventListener("DOMContentLoaded", function() {
+        initVideoSet('set1');  // Default set
+    });
