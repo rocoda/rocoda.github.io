@@ -36,6 +36,24 @@
             color: #007acc;
         }
 
+        .arxiv-link {
+            display: inline-block;          /* Make it a block-level element to apply padding */
+            padding: 10px 20px;             /* Add space inside the button */
+            background-color: #007acc;      /* Button background color */
+            color: white;                   /* Button text color */
+            text-decoration: none;          /* Remove underline */
+            border-radius: 20px;            /* Create the pill shape */
+            font-size: 14px;                /* Adjust font size */
+            font-weight: bold;              /* Make the text bold */
+            text-align: center;             /* Center-align text */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+        }
+
+        .arxiv-link:hover {
+            background-color: #005f99;      /* Darker blue on hover */
+            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+        }
 
         .author-block {
             font-size: 1.2em;
